@@ -11,6 +11,7 @@ const cateringSchema = new Schema({
         type: String,
         required: true
     },
+    
     image: {
         type: String,
         default: "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg",

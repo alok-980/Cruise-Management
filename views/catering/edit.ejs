@@ -1,0 +1,13 @@
+<h2>Edit catering details</h2>
+
+<form action="/catering/<%= catering._id %>?_method=PUT" method="POST">
+    <input type="text" name="catering[title]" value="<%= catering.title %>" placeholder="Enter catering title" required>
+    <br><br>
+    <input type="text" name="catering[image]" value="<%= catering.image %>" placeholder="Enter image URL">
+    <br><br>
+    <textarea name="catering[description]" placeholder="Enter description" required><%= catering.description %></textarea>
+    <br><br>
+    <input type="text" name="catering[location]" value="<%= catering.location %>" placeholder="Enter catering location">
+    <br><br>
+    <button type="submit">Save</button>
+</form>

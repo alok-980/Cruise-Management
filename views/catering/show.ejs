@@ -1,0 +1,14 @@
+<h1>catering details</h1>
+
+<h3><%= catering.title %></h3>
+<img src="<%= catering.image %>" alt="">
+<p><%= catering.description %></p>
+<p><%= catering.location %></p>
+
+<a href="/catering/<%= catering._id %>/edit">
+    <button>Edit</button>
+</a>
+<br><br>
+<form action="/catering/<%= catering._id %>?_method=DELETE" method="POST">
+    <button>Delete</button>
+</form>
