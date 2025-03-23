@@ -6,6 +6,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const Catering = require("./models/catering/cateringListing.models");
+const Menu = require("./models/catering/menu.models");
 const path = require("path");
 const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
@@ -27,6 +28,7 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.urlencoded({extended: true}));
 app.use(methodOverride("_method"));
 app.engine('ejs', ejsMate);
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
     res.send("this is the home page");
@@ -46,7 +48,7 @@ app.get("/catering/new", (req, res) => {
 // catering show route
 app.get("/catering/:id", async (req, res) => {
     const { id } = req.params;
-    let catering = await Catering.findById(id);
+    let catering = await Catering.findById(id).populate("menu");
     res.render("catering/show.ejs", {catering});
 })
 
@@ -77,6 +79,29 @@ app.delete("/catering/:id", async (req, res) => {
     let deleteCatering = await Catering.findByIdAndDelete(id);
     console.log(deleteCatering);
     res.redirect("/catering");
+})
+
+// route to add menu item for perticular catering
+app.post("/catering/:id/menu", async (req, res) => {
+    let catering = await Catering.findById(req.params.id);
+
+    const newMenu = new Menu(req.body.menu);
+
+    catering.menu.push(newMenu);
+
+    await newMenu.save();
+    await catering.save();
+    res.redirect(`/catering/${catering.id}`);
+})
+
+//route to delete menu items for perticular catering
+app.delete("/catering/:id/menu/:menuId", async (req, res) => {
+    let { id, menuId } = req.params;
+
+    await Catering.findByIdAndUpdate(id, {$pull: {menu: menuId}});
+    await Menu.findByIdAndDelete(menuId);
+
+    res.redirect(`/catering/${id}`);
 })
 
 const PORT = process.env.PORT;

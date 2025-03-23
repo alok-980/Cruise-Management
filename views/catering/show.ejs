@@ -1,3 +1,5 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
 <h1>catering details</h1>
 
 <h3><%= catering.title %></h3>
@@ -12,3 +14,44 @@
 <form action="/catering/<%= catering._id %>?_method=DELETE" method="POST">
     <button>Delete</button>
 </form>
+<br>
+
+<hr>
+
+<!-- menu -->
+<form action="/catering/<%= catering._id %>/menu" method="POST" >
+
+    <input type="text" name="menu[title]" placeholder="Enter menu title" required>
+    <br><br>
+    <input type="text" name="menu[image]" placeholder="Enter menu image url">
+    <br><br>
+    <input type="text" name="menu[description]" placeholder="Enter menu description" required>
+    <br><br>
+    <input type="number" name="menu[price]" placeholder="Enter price" required>
+    <br><br>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-danger">
+        <i class="fa-solid fa-circle-plus"></i>
+        Add Menu
+    </button>
+</form>
+
+<hr>
+
+<!-- menu list iteam -->
+<% for(menu of catering.menu) { %>
+    <div class="card allCatering mb-2 mt-2" style="width: 18rem;">
+        <img src="<%= menu.image %>" class="card-img-top" alt="...">
+        <div class="card-body">
+            <h5 class="card-title">
+                <%= menu.title %>
+            </h5>
+            <p><%= menu.description %></p>
+            <p><b>Price: </b><%= menu.price %></p>
+            <form method="POST" action="/catering/<%= catering._id %>/menu/<%= menu._id %>?_method=DELETE">
+                <button class="btn btn-sm btn-dark">Delete</button>
+            </form>
+        </div>
+    </div>
+<% } %>

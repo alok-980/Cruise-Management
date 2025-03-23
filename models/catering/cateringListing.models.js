@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const Menu = require("./menu.models.js");
 
 const cateringSchema = new Schema({
     title: {
@@ -22,6 +23,19 @@ const cateringSchema = new Schema({
         type: String,
         required: true
     },
+
+    menu: [
+        {
+          type: Schema.Types.ObjectId,
+          ref: "Menu"
+        }
+    ],
+})
+
+cateringSchema.post("findOneAndDelete", async (catering) => {
+    if(catering) {
+        await Menu.deleteMany({_id : {$in: catering.menu}});
+    }
 })
 
 const Catering = mongoose.model("Catering", cateringSchema);
