@@ -1,0 +1,52 @@
+/* Custom Button Styles */
+.btn-secondary {
+    background-color: #7f8c8d;
+    color: white;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.btn-secondary:hover {
+    background-color: #95a5a6;
+}
+
+.btn-secondary:active {
+    transform: translateY(1px);
+}
+
+/* Input Fields */
+.form-control {
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 1rem;
+}
+
+textarea.form-control {
+    resize: vertical;
+}
+
+/* Additional Form Padding */
+.catering-form {
+    margin-top: 30px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Heading Styling */
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* Custom Invalid Feedback */
+.invalid-feedback {
+    font-size: 0.9rem;
+    color: #e74c3c;
+}

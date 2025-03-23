@@ -1,57 +1,90 @@
 <% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/catering/show.css">
 
-<h1>catering details</h1>
+<!-- Catering Details Section -->
+<div class="catering-details">
+    <div class="catering-header">
+        <div class="catering-header-content">
+            <!-- Catering Title -->
+            <h1 class="catering-title"><%= catering.title %></h1>
 
-<h3><%= catering.title %></h3>
-<img src="<%= catering.image %>" alt="">
-<p><%= catering.description %></p>
-<p><%= catering.location %></p>
+            <!-- Catering Image -->
+            <img src="<%= catering.image %>" alt="Catering Image" class="catering-image">
 
-<a href="/catering/<%= catering._id %>/edit">
-    <button>Edit</button>
-</a>
-<br><br>
-<form action="/catering/<%= catering._id %>?_method=DELETE" method="POST">
-    <button>Delete</button>
-</form>
-<br>
+            <!-- Catering Description -->
+            <div class="catering-info">
+                <p class="catering-description"><%= catering.description %></p>
+                <p class="catering-location"><b>Location:</b> <%= catering.location %></p>
+            </div>
+        </div>
 
-<hr>
-
-<!-- menu -->
-<form action="/catering/<%= catering._id %>/menu" method="POST" >
-
-    <input type="text" name="menu[title]" placeholder="Enter menu title" required>
-    <br><br>
-    <input type="text" name="menu[image]" placeholder="Enter menu image url">
-    <br><br>
-    <input type="text" name="menu[description]" placeholder="Enter menu description" required>
-    <br><br>
-    <input type="number" name="menu[price]" placeholder="Enter price" required>
-    <br><br>
-
-    <!-- Submit Button -->
-    <button type="submit" class="btn btn-danger">
-        <i class="fa-solid fa-circle-plus"></i>
-        Add Menu
-    </button>
-</form>
-
-<hr>
-
-<!-- menu list iteam -->
-<% for(menu of catering.menu) { %>
-    <div class="card allCatering mb-2 mt-2" style="width: 18rem;">
-        <img src="<%= menu.image %>" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">
-                <%= menu.title %>
-            </h5>
-            <p><%= menu.description %></p>
-            <p><b>Price: </b><%= menu.price %></p>
-            <form method="POST" action="/catering/<%= catering._id %>/menu/<%= menu._id %>?_method=DELETE">
-                <button class="btn btn-sm btn-dark">Delete</button>
+        <!-- Action Buttons (Edit & Delete) -->
+        <div class="action-buttons">
+            <a href="/catering/<%= catering._id %>/edit">
+                <button class="action-button edit-button">Edit</button>
+            </a>
+            <form action="/catering/<%= catering._id %>?_method=DELETE" method="POST" class="delete-form">
+                <button type="submit" class="action-button delete-button">Delete</button>
             </form>
         </div>
     </div>
-<% } %>
+</div>
+
+<!-- Add New Menu Button -->
+<div class="add-menu-container">
+    <button class="action-button add-menu-btn" id="openModalBtn">Add New Menu</button>
+</div>
+
+<!-- Modal for Adding New Menu -->
+<div class="modal" id="addMenuModal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>Add New Menu</h2>
+        <form action="/catering/<%= catering._id %>/menu" method="POST" class="menu-form">
+            <input type="text" name="menu[title]" placeholder="Enter menu title" required class="menu-input">
+            <input type="text" name="menu[image]" placeholder="Enter menu image URL" class="menu-input">
+            <input type="text" name="menu[description]" placeholder="Enter menu description" required class="menu-input">
+            <input type="number" name="menu[price]" placeholder="Enter price" required class="menu-input">
+            <button type="submit" class="action-button add-menu-button">Add Menu</button>
+        </form>
+    </div>
+</div>
+
+<!-- Menu List -->
+<div class="menu-list">
+    <% for(menu of catering.menu) { %>
+        <div class="menu-item-card">
+            <img src="<%= menu.image %>" class="menu-item-image" alt="Menu Image">
+            <div class="menu-item-info">
+                <h5 class="menu-item-title"><%= menu.title %></h5>
+                <p class="menu-item-description"><%= menu.description %></p>
+                <p><b>Price:</b> ₹<%= menu.price %></p>
+                <form method="POST" action="/catering/<%= catering._id %>/menu/<%= menu._id %>?_method=DELETE">
+                    <button class="action-button delete-menu-button">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('addMenuModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        openModalBtn.addEventListener('click', function() {
+            modal.style.display = 'block';
+        });
+
+        closeModalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>

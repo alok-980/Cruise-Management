@@ -1,14 +1,17 @@
 <% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/catering/index.css">
 
 <h1>All Catering</h1>
 
-<div class="row row-cols-lg-3 row-cols-md-3 row-cols-sm-1 row-cols-1 mt-4">
+<div class="caterings">
     <% for(Catering of allCaterings) { %>
-        <div class="card allCatering mb-2 mt-2" style="width: 18rem;">
+        <div class="allCatering">
             <a href="/catering/<%= Catering._id %>">
-                <img src="<%= Catering.image %>" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">
+                <div class="catering-image">
+                    <img src="<%= Catering.image %>" class="image" alt="...">
+                </div>
+                <div>
+                    <h5 class="catering-title">
                         <%= Catering.title %>
                     </h5>
                 </div>

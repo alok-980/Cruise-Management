@@ -1,15 +1,48 @@
 <% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/catering/new.css">
 
 <h2>Add New Catering</h2>
 
-<form action="/catering" method="POST">
-    <input type="text" name="catering[title]" placeholder="Enter catering title" required>
-    <br><br>
-    <input type="text" name="catering[image]" placeholder="Enter image URL">
-    <br><br>
-    <textarea name="catering[description]" placeholder="Enter description" required></textarea>
-    <br><br>
-    <input type="text" name="catering[location]" placeholder="Enter catering location">
-    <br><br>
-    <button type="submit">Save</button>
+<!-- Form Section -->
+<form action="/catering" method="POST" class="catering-form needs-validation" novalidate>
+    <!-- Catering Title -->
+    <div class="mb-3">
+        <label for="cateringTitle" class="form-label">Catering Title</label>
+        <input type="text" class="form-control" id="cateringTitle" name="catering[title]" placeholder="Enter catering title" required>
+        <div class="invalid-feedback">
+            Please provide a valid catering title.
+        </div>
+    </div>
+    
+    <!-- Catering Image URL -->
+    <div class="mb-3">
+        <label for="cateringImage" class="form-label">Image URL</label>
+        <input type="text" class="form-control" id="cateringImage" name="catering[image]" placeholder="Enter image URL">
+        <div class="invalid-feedback">
+            Please provide a valid image URL.
+        </div>
+    </div>
+    
+    <!-- Catering Description -->
+    <div class="mb-3">
+        <label for="cateringDescription" class="form-label">Description</label>
+        <textarea class="form-control" id="cateringDescription" name="catering[description]" placeholder="Enter description" required></textarea>
+        <div class="invalid-feedback">
+            Please provide a description.
+        </div>
+    </div>
+    
+    <!-- Catering Location -->
+    <div class="mb-3">
+        <label for="cateringLocation" class="form-label">Location</label>
+        <input type="text" class="form-control" id="cateringLocation" name="catering[location]" placeholder="Enter catering location">
+        <div class="invalid-feedback">
+            Please provide a valid location.
+        </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Save</button>
+    <!-- Cancel Button -->
+    <a href="/catering" class="btn btn-primary">Cancel</a> <!-- Redirect to catering list page -->
 </form>
