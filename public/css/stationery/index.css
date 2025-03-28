@@ -1,0 +1,46 @@
+/* Custom Styles for Stationery Cards */
+.stationery-card {
+    border: 1px solid #ddd; /* Add a border to the cards */
+    border-radius: 8px;      /* Round the corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Slight shadow for depth */
+    transition: all 0.3s ease-in-out; /* Smooth transition on hover */
+  }
+  
+  .stationery-card img {
+    height: 200px;          /* Fixed height for images */
+    object-fit: cover;      /* Ensures image covers the space without distortion */
+    border-bottom: 1px solid #ddd; /* Border between image and content */
+  }
+  
+  .stationery-card:hover {
+    transform: translateY(-5px); /* Hover effect to raise the card */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Deep shadow on hover */
+  }
+  
+  .card-body {
+    padding: 16px;
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .card-category {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  @media (max-width: 768px) {
+    .stationery-card img {
+      height: 180px; /* Slightly smaller images on medium and small screens */
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .stationery-card img {
+      height: 150px; /* Smaller images on mobile screens */
+    }
+  }
+  

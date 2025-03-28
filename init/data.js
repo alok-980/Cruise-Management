@@ -16,4 +16,38 @@ const sampleCatering = [
     }
 ];
 
-module.exports = { data: sampleCatering };
+const sampleStationeryList = [
+    {
+        title: "Pen",
+        image: "https://m.media-amazon.com/images/I/515sXTO5QkL.jpg"
+    },
+    {
+        title: "Pencil",
+        image: "https://brustro.in/cdn/shop/files/BRMPE05.4.jpg?v=1692340990"
+    },
+    {
+        title: "Notebook",
+        image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtUwbv2r-luZuqvCz3lSA7kNXzXuXCl5-G9g&s"
+    },
+    {
+        title: "Eraser",
+        image: "https://m.media-amazon.com/images/I/716YBLPCc7L._AC_UF1000,1000_QL80_.jpg"
+    },
+    {
+        title: "Sharpener",
+        image: "https://encrypted-tbn3.gstatic.com/shopping?q=tbn:ANd9GcSv9CIb_MWd52NnMgerSl7zIOCxZ1TKh0_QsO2Tx5HAE5gjuSl1SXbGq5NnPVsGNBNe8GGjyIHFCbsq7_l44Ov3ZaIxo7MX0YBCgdlS5x6cwHgq_A_702oGQw"
+    },
+    {
+        title: "Marker",
+        image: "https://www.pentel.co.in/cdn/shop/files/WhiteBoardMarkerX-TraLargeMW46All.jpg?v=1725885812"
+    },
+    {
+        title: "Ruler",
+        image: "https://isomarsshop.in/cdn/shop/products/RollingRulerMainImage.jpg?v=1647252488&width=1214"
+    }
+]
+
+module.exports = { 
+    data: sampleCatering,
+    list: sampleStationeryList
+};

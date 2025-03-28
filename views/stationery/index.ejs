@@ -1,0 +1,29 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/stationery/index.css">
+
+<h4>All Stationery</h4>
+
+<div class="container mt-4">
+  <div class="row">
+    <% for (let stationery of allStationery) { %>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+          <a href="/stationery/<%= stationery._id %>">
+            <div class="card stationery-card">
+              <img src="<%= stationery.image %>" alt="<%= stationery.title %>" class="card-img-top">
+              <div class="card-body">
+                <p class="card-category">Category: <b><%= stationery.title %></b></p>
+                <form method="POST" action="/stationery/<%= stationery._id %>?_method=DELETE">
+                  <button class="action-button delete-menu-button btn btn-danger">Delete</button>
+                </form>
+              </div>
+            </div>
+          </a>
+        </div>
+    <% } %>
+
+    <a href="/stationery/new">
+      <button class="btn btn-primary mb-3">Add new Categ</button>
+    </a>
+  </div>
+</div>
+

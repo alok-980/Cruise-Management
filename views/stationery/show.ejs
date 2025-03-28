@@ -1,0 +1,74 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<link rel="stylesheet" href="/css/stationery/show.css">
+
+<h4>All Items</h4>
+
+<!-- Menu List -->
+<div class="menu-list">
+    <% for (item of stationery.item) { %>
+        <div class="menu-item-card">
+            <div class="menu-item-image-container">
+                <img src="<%= item.image %>" class="menu-item-image" alt="Menu Image">
+            </div>
+            <div class="menu-item-info">
+                <h5 class="menu-item-title"><%= item.title %></h5>
+                <p><b>Price:</b> ₹<%= item.price %></p>
+                <!-- Delete Form -->
+                <form method="POST" action="/stationery/<%= stationery._id %>/item/<%= item._id %>?_method=DELETE">
+                    <button class="action-button delete-menu-button">Delete</button>
+                </form>
+            </div>
+        </div>
+    <% } %>
+</div>
+
+<!-- Add New Item Button -->
+<div class="add-item-container">
+    <button class="action-button add-item-btn" id="openModalBtn">Add New Menu</button>
+</div>
+
+<!-- Modal for Adding New Item -->
+<div class="modal" id="addItemModal">
+    <div class="modal-content">
+        <span class="close-btn" id="closeModalBtn">&times;</span>
+        <h2>Add New Menu</h2>
+        <form action="/stationery/<%= stationery._id %>/item" method="POST" class="item-form">
+            <div class="form-group">
+                <input type="text" name="item[title]" placeholder="Enter menu title" required class="item-input form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="item[image]" placeholder="Enter menu image URL" class="item-input form-control">
+            </div>
+            <div class="form-group">
+                <input type="text" name="item[price]" placeholder="Enter price" required class="item-input form-control">
+            </div>
+            <button type="submit" class="action-button add-item-button btn btn-primary">Add Menu</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const modal = document.getElementById('addItemModal');
+        const openModalBtn = document.getElementById('openModalBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        // Open the modal
+        openModalBtn.addEventListener('click', function() {
+            modal.style.display = 'block';
+        });
+
+        // Close the modal
+        closeModalBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
+
+        // Close modal if clicking outside the modal content
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    });
+</script>
