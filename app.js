@@ -18,6 +18,8 @@ const menuRoute = require("./routes/catering/menu.route.js");
 const stationeryRoute = require("./routes/stationery/stationery.route.js");
 const itemRoute = require("./routes/stationery/item.route.js");
 
+const resortRoute = require("./routes/resort/resort.route.js")
+
 const MONGO_URL = `${process.env.MONGO_URI}cruise-management`;
 
 async function main() {
@@ -67,6 +69,20 @@ app.use("/catering/:id/menu", menuRoute);
 
 app.use("/stationery", stationeryRoute);
 app.use("/stationery/:id/item", itemRoute);
+
+app.get("/resort-movies", (req, res) => {
+    res.render("resort-movies/index.ejs");
+})
+
+app.use("/resort-movies/resort", resortRoute);
+
+
+
+
+
+app.get("/resort-movies/movies", (req, res) => {
+    res.render("resort-movies/movies-hall/index.ejs");
+})
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));

@@ -1,0 +1,33 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/resort-movies/resort/index.css">
+
+<div class="container mt-4">
+    <h1 class="page-title text-center mb-4">Cruise Resort Collection</h1>
+
+    <div class="row">
+        <% for(resort of allResort) { %>
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card">
+                    <img src="<%= resort.image %>" alt="<%= resort.title %>" class="card-img-top" />
+                    <div class="card-body">
+                        <h5 class="card-title"><%= resort.title %></h5>
+                        <p class="card-text"><%= resort.description %></p>
+                        <p class="text-danger"><strong>$<%= resort.price.toFixed(2) %> per night</strong></p>
+                        <div class="d-flex">
+                            <a href="/resort-movies/resort/<%= resort._id %>/edit">
+                                <button class="btn btn-primary">Edit</button>
+                            </a>
+                            &nbsp;
+                            <form action="/resort-movies/resort/<%= resort._id %>?_method=DELETE" method="POST" class="delete-form">
+                                <button class="btn btn-primary">Delete</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }; %>
+        <a href="/resort-movies/resort/new">
+            <button class="btn btn-primary">Add new resort</button>
+        </a>
+    </div>
+</div>

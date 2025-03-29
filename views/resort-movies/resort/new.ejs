@@ -1,0 +1,46 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/resort-movies/resort/index.css">
+
+<div class="container mt-5">
+    <h2>Edit Resort Details</h2>
+    <form action="/resort-movies/resort" method="POST" novalidate>
+        <!-- Title -->
+        <div class="mb-3">
+            <label for="title" class="form-label">Resort Title</label>
+            <input type="text" class="form-control" id="title" name="resort[title]" required>
+            <div class="invalid-feedback">
+                Please provide a title for the resort.
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="mb-3">
+            <label for="description" class="form-label">Resort Description</label>
+            <textarea class="form-control" id="description" name="resort[description]" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Please provide a description.
+            </div>
+        </div>
+
+        <!-- Image URL -->
+        <div class="mb-3">
+            <label for="image" class="form-label">Resort Image URL</label>
+            <input type="url" class="form-control" id="image" name="resort[image]">
+            <div class="invalid-feedback">
+                Please provide a valid image URL.
+            </div>
+        </div>
+
+        <!-- Price -->
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" id="price" name="resort[price]" required>
+            <div class="invalid-feedback">
+                Please provide a price.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="/resort-movies/resort" class="btn btn-primary btn-action">Cancel</a>
+    </form>
+</div>
