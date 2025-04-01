@@ -1,0 +1,48 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/resort-movies/movie-hall/index.css">
+
+<div class="container my-5">
+    <h2 class="page-title text-center mb-4">Add New Movie Hall</h2>
+
+    <!-- Movie Hall Form -->
+    <form action="/resort-movies/movies" method="POST" novalidate>
+        <!-- Movie Hall Title -->
+        <div class="form-group mb-2">
+            <label for="title">Movie Hall Title</label>
+            <input type="text" class="form-control" id="title" name="hall[title]" required placeholder="Enter movie hall title">
+            <div class="invalid-feedback">
+                Please provide a title for the movie hall.
+            </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group mb-2">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="hall[description]" required placeholder="Enter movie hall description"></textarea>
+            <div class="invalid-feedback">
+                Please provide a description for the movie hall.
+            </div>
+        </div>
+
+        <!-- Image URL -->
+        <div class="form-group mb-2">
+            <label for="image">Image URL</label>
+            <input type="url" class="form-control" id="image" name="hall[image]" placeholder="Enter image URL (Optional)">
+            <div class="invalid-feedback">
+                Please provide a valid URL for the image (optional).
+            </div>
+        </div>
+
+        <!-- Capacity -->
+        <div class="form-group mb-4">
+            <label for="capacity">Capacity</label>
+            <input type="number" class="form-control" id="capacity" name="hall[capacity]" required placeholder="Enter movie hall capacity">
+            <div class="invalid-feedback">
+                Please provide the capacity for the movie hall.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-success btn-lg btn-block">Add Movie Hall</button>
+    </form>
+</div>

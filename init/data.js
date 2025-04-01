@@ -74,8 +74,30 @@ const sampleResorts = [
     }
 ];
 
+const sampleMoviesHall = [
+    {
+        title: "Oceanview Cinema",
+        description: "Enjoy a stunning cinematic experience aboard the cruise, with panoramic views of the ocean. Our large screen shows the latest blockbuster hits and classic favorites.",
+        image: "https://img.freepik.com/premium-photo/luxury-home-theater-with-ocean-view_161754-17707.jpg",
+        capacity: 200,
+    },
+    {
+        title: "Starlight Theater",
+        description: "The Starlight Theater offers a perfect setting for romantic movie nights under the stars. Enjoy a cozy atmosphere with your loved ones and watch the latest romantic dramas.",
+        image: "https://mickeyvisit.com/wp-content/uploads/2023/08/Walt-Disney-Theatre-DIsney-Treasure.jpg",
+        capacity: 120,
+    },
+    {
+        title: "Family Fun Cinema",
+        description: "This cinema is perfect for families, offering a variety of movies for all ages. From animated classics to family-friendly adventures, there's something for everyone.",
+        image: "https://starsatsea.com/uploads/9/3/8/7/93877312/rci-sy-royaltheater.jpg",
+        capacity: 150,
+    }
+]
+
 module.exports = { 
     data: sampleCatering,
     list: sampleStationeryList,
-    resort: sampleResorts
+    resort: sampleResorts,
+    moviesHall: sampleMoviesHall
 };

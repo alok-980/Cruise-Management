@@ -1,0 +1,35 @@
+<% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/admin/signup.css">
+
+<div class="container">
+    <div class="signup-container">
+        <h2 class="signup-header">Admin Signup</h2>
+
+        <!-- Signup Form -->
+        <form action="/admin/signup" method="POST" class="needs-validation" novalidate>
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                <div class="invalid-feedback">Please provide a username.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+                <div class="invalid-feedback">Please provide a valid email address.</div>
+            </div>
+            
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required minlength="6">
+                <div class="invalid-feedback">Password must be at least 6 characters.</div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Signup</button>
+        </form>
+
+        <div class="signup-footer">
+            <p>Already have an account? <a href="/admin/login">Login here</a></p>
+        </div>
+    </div>
+</div>

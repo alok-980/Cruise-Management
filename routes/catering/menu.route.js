@@ -5,6 +5,7 @@ const Menu = require("../../models/catering/menu.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const { menuSchema } = require("../../schema.js");
 const ExpressError = require("../../utils/expressError.js");
+const { isLoggedIn } = require("../../middleware.js");
 
 const validateMenu = (req, res, next) => {
     const {error} = menuSchema.validate(req.body);
@@ -21,6 +22,7 @@ const validateMenu = (req, res, next) => {
 // route to add menu item for perticular catering
 router.post("/",
     // validateMenu,
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         let catering = await Catering.findById(req.params.id);
 
@@ -45,6 +47,7 @@ router.post("/",
 
 //route to delete menu items for perticular catering
 router.delete("/:menuId", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         let { id, menuId } = req.params;
     

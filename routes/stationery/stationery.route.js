@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Stationery = require("../../models/stationery/stationeryList.models");
 const wrapAsync = require("../../utils/wrapAsync.js");
+const { isLoggedIn } = require("../../middleware.js");
 
 router.get("/", 
     wrapAsync(async (req, res) => {
@@ -10,7 +11,9 @@ router.get("/",
     })
 )
 
-router.get("/new", (req, res) => {
+router.get("/new",
+    isLoggedIn,
+    (req, res) => {
     res.render("stationery/new.ejs");
 })
 
@@ -27,6 +30,7 @@ router.get("/:id",
 )
 
 router.post("/", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         const newStationery = new Stationery(req.body.stationery);
         await newStationery.save();
@@ -36,6 +40,7 @@ router.post("/",
 )
 
 router.delete("/:id", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deletedStationeryList = await Stationery.findByIdAndDelete(id);

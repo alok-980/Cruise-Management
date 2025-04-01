@@ -13,6 +13,16 @@
             <a class="nav-link" href="/catering/new">Add New Catering</a>
           </li>
         </ul>
+        <div class="navbar-nav gap-3 ms-auto">
+          <% if (!currUser) { %>
+            <a href="/admin/signup">Signup</a>
+            <a href="/admin/login">Login</a>
+          <% } %>
+
+          <% if (currUser) { %>
+          <a href="/admin/logout">Logout</a>
+          <% } %>
+        </div>
       </div>
     </div>
   </nav>

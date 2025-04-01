@@ -3,6 +3,7 @@ const initData = require("./data.js");
 const Catering = require("../models/catering/cateringListing.models.js");
 const Stationery = require("../models/stationery/stationeryList.models.js");
 const Resort = require("../models/resort/resort.models.js");
+const MoviesHall = require("../models/movies/moviesHall.models.js");
 
 main().then(() => {
     console.log("connection successfull");
@@ -21,8 +22,11 @@ const initDB = async () => {
     // await Stationery.deleteMany({});
     // await Stationery.insertMany(initData.list);
 
-    await Resort.deleteMany({});
-    await Resort.insertMany(initData.resort);
+    // await Resort.deleteMany({});
+    // await Resort.insertMany(initData.resort);
+
+    await MoviesHall.deleteMany({});
+    await MoviesHall.insertMany(initData.moviesHall);
     console.log("data saved successfully");
 }
 

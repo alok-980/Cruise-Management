@@ -1,3 +1,40 @@
 <% layout("/layouts/boilerplate.ejs") %>
+<link rel="stylesheet" href="/css/resort-movies/movie-hall/index.css">
 
-<h1>movies hall</h1>
+<div class="container my-5">
+    <h2 class="page-title text-center mb-4">Movie Halls on Cruise</h2>
+
+    <div class="row justify-content-center">
+        <% for(hall of allMoviesHall) { %>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                <div class="card h-100 d-flex flex-column">
+                    <a href="/resort-movies/movies/<%= hall._id %>">
+                        <div class="image-container position-relative">
+                            <img src="<%= hall.image %>" alt="<%= hall.title %>" class="card-img-top movie-hall-image" />
+                            <div class="image-overlay d-flex align-items-center justify-content-center">
+                                <p class="overlay-text">Click to see in detail</p>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title"><%= hall.title %></h5>
+                        <p class="card-text"><%= hall.description %></p>
+                        <p class="card-text"><strong>Capacity:</strong> <%= hall.capacity %> seats</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/resort-movies/movies/<%= hall._id %>/edit" class="btn btn-primary btn-sm">
+                            Edit
+                        </a>
+                        <form action="/resort-movies/movies/<%= hall._id %>?_method=DELETE" method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="text-center mt-4">
+        <a href="/resort-movies/movies/new" class="btn btn-success">Add New Movie Hall</a>
+    </div>
+</div>

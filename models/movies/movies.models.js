@@ -21,6 +21,11 @@ const moviesSchema = new Schema({
     price: {
         type: Number,
         required: true
+    },
+
+    schedule: {
+        type: String,
+        required: true
     }
 })
 

@@ -4,6 +4,7 @@ const Catering = require("../../models/catering/cateringListing.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const { cateringSchema } = require("../../schema.js");
 const ExpressError = require("../../utils/expressError.js");
+const { isLoggedIn } = require("../../middleware.js");
 
 const validateCatering = (req, res, next) => {
     const {error} = cateringSchema.validate(req.body);
@@ -25,9 +26,12 @@ router.get("/",
 )
 
 // catering new route
-router.get("/new", (req, res) => {
-    res.render("catering/new.ejs");
-})
+router.get("/new", 
+    isLoggedIn,
+    (req, res) => {
+        res.render("catering/new.ejs");
+    }
+)
 
 // catering show route
 router.get("/:id", 
@@ -44,6 +48,7 @@ router.get("/:id",
 
 // catering post route
 router.post("/",
+    isLoggedIn,
     validateCatering,
     wrapAsync(async (req, res) => {
         const newCatering = new Catering(req.body.catering);
@@ -55,6 +60,7 @@ router.post("/",
 
 // catering edit route
 router.get("/:id/edit", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let catering = await Catering.findById(id);
@@ -68,6 +74,7 @@ router.get("/:id/edit",
 
 // catering update route
 router.put("/:id", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         if(!req.body.catering) {
             throw new ExpressError(400, "Send valid data for catering");
@@ -81,6 +88,7 @@ router.put("/:id",
 
 // catering delete route
 router.delete("/:id", 
+    isLoggedIn,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deleteCatering = await Catering.findByIdAndDelete(id);

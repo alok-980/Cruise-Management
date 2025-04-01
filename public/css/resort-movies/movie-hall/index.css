@@ -1,0 +1,61 @@
+.movie-hall-container {
+    padding: 20px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container {
+    position: relative;
+}
+
+.movie-hall-image {
+    height: 200px; /* Fixed height for uniform images */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    width: 100%; /* Makes the image fill the width of the card */
+    transition: opacity 0.3s ease;
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.6); /* Transparent white overlay */
+    opacity: 0; /* Initially hidden */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.3s ease;
+}
+
+.overlay-text {
+    font-size: 1.2rem;
+    color: #333;
+    font-weight: bold;
+}
+
+.card:hover .image-overlay {
+    opacity: 1; /* Show overlay when card is hovered */
+}
+
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.card-footer {
+    background-color: #f8f9fa;
+    border-top: 1px solid #ddd;
+}
+
+.card-footer .btn {
+    width: 48%; /* Ensures buttons are side by side */
+}
