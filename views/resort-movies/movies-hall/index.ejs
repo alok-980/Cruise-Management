@@ -21,6 +21,7 @@
                         <p class="card-text"><%= hall.description %></p>
                         <p class="card-text"><strong>Capacity:</strong> <%= hall.capacity %> seats</p>
                     </div>
+                    <% if(currUser && currUser._id.equals(hall.owner._id)) { %>
                     <div class="card-footer d-flex justify-content-between">
                         <a href="/resort-movies/movies/<%= hall._id %>/edit" class="btn btn-primary btn-sm">
                             Edit
@@ -29,6 +30,7 @@
                             <button class="btn btn-danger">Delete</button>
                         </form>
                     </div>
+                    <% } %>
                 </div>
             </div>
         <% } %>

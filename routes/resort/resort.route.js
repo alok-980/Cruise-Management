@@ -3,7 +3,7 @@ const router = express.Router();
 const Resort = require("../../models/resort/resort.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const ExpressError = require("../../utils/expressError.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isResortOwner } = require("../../middleware.js");
 
 router.get("/", 
     wrapAsync(async (req, res) => {
@@ -30,6 +30,7 @@ router.post("/",
 
 router.get("/:id/edit", 
     isLoggedIn,
+    isResortOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let resort = await Resort.findById(id);
@@ -43,6 +44,7 @@ router.get("/:id/edit",
 
 router.put("/:id", 
     isLoggedIn,
+    isResortOwner,
     wrapAsync(async (req, res) => {
         console.log(req.body.resort);
         if ((!req.body.resort)) {
@@ -57,6 +59,7 @@ router.put("/:id",
 
 router.delete("/:id", 
     isLoggedIn,
+    isResortOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deletedResort = await Resort.findByIdAndDelete(id);

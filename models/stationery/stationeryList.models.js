@@ -20,6 +20,11 @@ const stationaryListSchema = new Schema({
           ref: "Item"
         }
     ],
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "Admin"
+    }
 })
 
 stationaryListSchema.post("findOneAndDelete", async (stationery) => {

@@ -3,13 +3,14 @@ const router = express.Router();
 const Admin = require("../../models/admin/admin.mmodels");
 const wrapAsync = require("../../utils/wrapAsync");
 const passport = require("passport");
+const { saveRedirectUrl } = require("../../middleware.js");
 
 router.get("/signup", (req, res) => {
     res.render("admin/signup.ejs");
 })
 
 router.post("/signup", 
-    wrapAsync(async (req, res) => {
+    wrapAsync(async (req, res, next) => {
         try {
             let { username, email, password } = req.body;
             const admin = new Admin({
@@ -19,8 +20,13 @@ router.post("/signup",
             
             const registeredAdmin = await Admin.register(admin, password);
             console.log(registeredAdmin);
-            req.flash("success", "Admin registered successfullt");
-            res.redirect("/admin/login");
+            req.login(registeredAdmin, (err) => {
+                if(err) {
+                    return next(err);
+                }
+                req.flash("success", "Admin registered successfullt");
+                res.redirect("/admin/login");
+            })
         } catch (err) {
             req.flash("failure", err.message);
             res.redirect("/admin/signup");
@@ -33,10 +39,12 @@ router.get("/login", (req, res) => {
 })
 
 router.post("/login", 
+    saveRedirectUrl,
     passport.authenticate("local", { failureRedirect: "/admin/login", failureFlash: true}),
     async (req, res) => {
         req.flash("success", "admin logged in successfully");
-        res.redirect("/catering");
+        let redirectUrl = res.locals.redirectUrl || "/catering";
+        res.redirect(redirectUrl);
 })
 
 router.get("/logout", (req, res, next) => {

@@ -19,6 +19,7 @@
         </div>
 
         <!-- Action Buttons (Edit & Delete) -->
+        <% if(currUser && currUser._id.equals(catering.owner._id)) { %>
         <div class="action-buttons">
             <a href="/catering/<%= catering._id %>/edit">
                 <button class="action-button edit-button">Edit</button>
@@ -27,6 +28,7 @@
                 <button type="submit" class="action-button delete-button">Delete</button>
             </form>
         </div>
+        <% } %>
     </div>
 </div>
 

@@ -4,7 +4,7 @@ const Catering = require("../../models/catering/cateringListing.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const { cateringSchema } = require("../../schema.js");
 const ExpressError = require("../../utils/expressError.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isOwner } = require("../../middleware.js");
 
 const validateCatering = (req, res, next) => {
     const {error} = cateringSchema.validate(req.body);
@@ -37,7 +37,7 @@ router.get("/new",
 router.get("/:id", 
     wrapAsync(async (req, res) => {
         const { id } = req.params;
-        let catering = await Catering.findById(id).populate("menu");
+        let catering = await Catering.findById(id).populate("menu").populate("owner");
         if(!catering) {
             req.flash("failure", "catering you requested for does not exist!");
             res.redirect("/catering");
@@ -61,6 +61,7 @@ router.post("/",
 // catering edit route
 router.get("/:id/edit", 
     isLoggedIn,
+    isOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let catering = await Catering.findById(id);
@@ -75,11 +76,12 @@ router.get("/:id/edit",
 // catering update route
 router.put("/:id", 
     isLoggedIn,
+    isOwner,
     wrapAsync(async (req, res) => {
         if(!req.body.catering) {
             throw new ExpressError(400, "Send valid data for catering");
         }
-        let { id } = req.params;
+        let { id } = req.params; 
         await Catering.findByIdAndUpdate(id, {...req.body.catering});
         req.flash("success", "catering updated");
         res.redirect(`/catering/${id}`);
@@ -89,6 +91,7 @@ router.put("/:id",
 // catering delete route
 router.delete("/:id", 
     isLoggedIn,
+    isOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deleteCatering = await Catering.findByIdAndDelete(id);

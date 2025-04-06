@@ -12,9 +12,11 @@
               <img src="<%= stationery.image %>" alt="<%= stationery.title %>" class="card-img-top">
               <div class="card-body">
                 <p class="card-category">Category: <b><%= stationery.title %></b></p>
+                <% if(currUser && currUser._id.equals(stationery.owner._id)) { %>
                 <form method="POST" action="/stationery/<%= stationery._id %>?_method=DELETE">
                   <button class="action-button delete-menu-button btn btn-danger">Delete</button>
                 </form>
+                <% } %>
               </div>
             </div>
           </a>

@@ -3,7 +3,7 @@ const router = express.Router();
 const MoviesHall = require("../../models/movies/moviesHall.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const ExpressError = require("../../utils/expressError.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isHallOwner } = require("../../middleware.js");
 
 router.get("/", 
     wrapAsync(async (req, res) => {
@@ -37,6 +37,7 @@ router.post("/",
 
 router.get("/:id/edit", 
     isLoggedIn,
+    isHallOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let hall = await MoviesHall.findById(id);
@@ -50,6 +51,7 @@ router.get("/:id/edit",
 
 router.put("/:id", 
     isLoggedIn,
+    isHallOwner,
     wrapAsync(async (req, res) => {
         if(!req.body.hall) {
             throw new ExpressError(400, "send valid data for movies hall");
@@ -63,6 +65,7 @@ router.put("/:id",
 
 router.delete("/:id", 
     isLoggedIn,
+    isHallOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deletedHall = await MoviesHall.findByIdAndDelete(id);

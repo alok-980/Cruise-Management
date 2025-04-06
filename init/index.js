@@ -17,15 +17,19 @@ async function main() {
 
 const initDB = async () => {
     // await Catering.deleteMany({});
+    // initData.data = initData.data.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
     // await Catering.insertMany(initData.data);
 
     // await Stationery.deleteMany({});
+    // initData.list = initData.list.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
     // await Stationery.insertMany(initData.list);
 
     // await Resort.deleteMany({});
+    // initData.resort = initData.resort.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
     // await Resort.insertMany(initData.resort);
 
     await MoviesHall.deleteMany({});
+    initData.moviesHall = initData.moviesHall.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
     await MoviesHall.insertMany(initData.moviesHall);
     console.log("data saved successfully");
 }

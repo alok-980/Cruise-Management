@@ -29,7 +29,12 @@ const moviesHallSchema = new Schema({
             type: Schema.Types.ObjectId,
             ref: "Movies"
         }
-    ]
+    ],
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "Admin"
+    }
 })
 
 moviesHallSchema.post("findOneAndDelete", async (movieshall) => {

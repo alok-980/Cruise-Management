@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const Menu = require("./menu.models.js");
+const Admin = require("../admin/admin.mmodels.js");
 
 const cateringSchema = new Schema({
     title: {
@@ -30,6 +31,11 @@ const cateringSchema = new Schema({
           ref: "Menu"
         }
     ],
+
+    owner: {
+        type: Schema.Types.ObjectId,
+        ref: "Admin"
+    }
 })
 
 cateringSchema.post("findOneAndDelete", async (catering) => {

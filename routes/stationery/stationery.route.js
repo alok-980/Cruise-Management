@@ -20,7 +20,7 @@ router.get("/new",
 router.get("/:id", 
     wrapAsync(async (req, res) => {
         const { id } = req.params;
-        let stationery = await Stationery.findById(id).populate("item");
+        let stationery = await Stationery.findById(id).populate("item").populate("owner");
         if(!stationery) {
             req.flash("failure", "stationery you requested for does not exist!");
             res.redirect("/stationery");
