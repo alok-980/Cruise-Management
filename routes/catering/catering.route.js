@@ -17,48 +17,36 @@ const validateCatering = (req, res, next) => {
     }
 }
 
-// catering index route
-router.get("/", 
-    wrapAsync(cateringController.index)
-)
+router.route("/")
+    .get(wrapAsync(cateringController.index))
+    .post(
+        isLoggedIn,
+        validateCatering,
+        wrapAsync(cateringController.createCatering)    
+    );
 
-// catering new route
 router.get("/new", 
     isLoggedIn,
     cateringController.renderNewFor
 )
 
-// catering show route
-router.get("/:id", 
-    wrapAsync(cateringController.showCateringDetails)
-)
+router.route("/:id")
+    .get(wrapAsync(cateringController.showCateringDetails))
+    .put(
+        isLoggedIn,
+        isOwner,
+        wrapAsync(cateringController.updateCatering)
+    )
+    .delete(
+        isLoggedIn,
+        isOwner,
+        wrapAsync(cateringController.destroyCatering)
+    );
 
-// catering post route
-router.post("/",
-    isLoggedIn,
-    validateCatering,
-    wrapAsync(cateringController.createCatering)    
-)
-
-// catering edit route
 router.get("/:id/edit", 
     isLoggedIn,
     isOwner,
     wrapAsync(cateringController.showEditForm)
-)
-
-// catering update route
-router.put("/:id", 
-    isLoggedIn,
-    isOwner,
-    wrapAsync(cateringController.updateCatering)
-)
-
-// catering delete route
-router.delete("/:id", 
-    isLoggedIn,
-    isOwner,
-    wrapAsync(cateringController.destroyCatering)
 )
 
 module.exports = router;
