@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Catering = require("../../models/catering/cateringListing.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const { cateringSchema } = require("../../schema.js");
 const ExpressError = require("../../utils/expressError.js");
 const { isLoggedIn, isOwner } = require("../../middleware.js");
+const cateringController = require("../../controllers/catering/catering.controller.js");
 
 const validateCatering = (req, res, next) => {
     const {error} = cateringSchema.validate(req.body);
@@ -19,86 +19,46 @@ const validateCatering = (req, res, next) => {
 
 // catering index route
 router.get("/", 
-    wrapAsync(async (req, res) => {
-        const allCaterings = await Catering.find({});
-        res.render("catering/index.ejs", { allCaterings });
-    })
+    wrapAsync(cateringController.index)
 )
 
 // catering new route
 router.get("/new", 
     isLoggedIn,
-    (req, res) => {
-        res.render("catering/new.ejs");
-    }
+    cateringController.renderNewFor
 )
 
 // catering show route
 router.get("/:id", 
-    wrapAsync(async (req, res) => {
-        const { id } = req.params;
-        let catering = await Catering.findById(id).populate("menu").populate("owner");
-        if(!catering) {
-            req.flash("failure", "catering you requested for does not exist!");
-            res.redirect("/catering");
-        }
-        res.render("catering/show.ejs", {catering});
-    })
+    wrapAsync(cateringController.showCateringDetails)
 )
 
 // catering post route
 router.post("/",
     isLoggedIn,
     validateCatering,
-    wrapAsync(async (req, res) => {
-        const newCatering = new Catering(req.body.catering);
-        await newCatering.save();
-        req.flash("success", "New catering created!");
-        res.redirect("/catering");
-    })    
+    wrapAsync(cateringController.createCatering)    
 )
 
 // catering edit route
 router.get("/:id/edit", 
     isLoggedIn,
     isOwner,
-    wrapAsync(async (req, res) => {
-        let { id } = req.params;
-        let catering = await Catering.findById(id);
-        if(!catering) {
-            req.flash("failure", "catering you requested for does not exist!");
-            res.redirect("/catering");
-        }
-        res.render("catering/edit.ejs", {catering});
-    })
+    wrapAsync(cateringController.showEditForm)
 )
 
 // catering update route
 router.put("/:id", 
     isLoggedIn,
     isOwner,
-    wrapAsync(async (req, res) => {
-        if(!req.body.catering) {
-            throw new ExpressError(400, "Send valid data for catering");
-        }
-        let { id } = req.params; 
-        await Catering.findByIdAndUpdate(id, {...req.body.catering});
-        req.flash("success", "catering updated");
-        res.redirect(`/catering/${id}`);
-    })
+    wrapAsync(cateringController.updateCatering)
 )
 
 // catering delete route
 router.delete("/:id", 
     isLoggedIn,
     isOwner,
-    wrapAsync(async (req, res) => {
-        let { id } = req.params;
-        let deleteCatering = await Catering.findByIdAndDelete(id);
-        req.flash("success", "catering deleted successfully");
-        console.log(deleteCatering);
-        res.redirect("/catering");
-    })
+    wrapAsync(cateringController.destroyCatering)
 )
 
 module.exports = router;

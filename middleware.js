@@ -24,7 +24,7 @@ module.exports.saveRedirectUrl = (req, res, next) => {
 module.exports.isOwner = async (req, res, next) => {
     let { id } = req.params;
     let catering = await Catering.findById(id);
-    if (!catering.owner._id.equals(currUser._id)) {
+    if (!catering.owner._id.equals(req.user._id)) {
         req.flash("failure", "you are not the owner of this catering");
         return res.redirect(`/catering/${id}`);
     }
