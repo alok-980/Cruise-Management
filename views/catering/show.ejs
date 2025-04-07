@@ -33,9 +33,11 @@
 </div>
 
 <!-- Add New Menu Button -->
+ <% if(currUser) { %>
 <div class="add-menu-container">
     <button class="action-button add-menu-btn" id="openModalBtn">Add New Menu</button>
 </div>
+<% } %>
 
 <!-- Modal for Adding New Menu -->
 <div class="modal" id="addMenuModal">

@@ -24,9 +24,11 @@
 </div>
 
 <!-- Add New Item Button -->
-<div class="add-item-container">
-    <button class="action-button add-item-btn" id="openModalBtn">Add New Menu</button>
-</div>
+<% if(currUser) { %>
+    <div class="add-item-container">
+        <button class="action-button add-item-btn" id="openModalBtn">Add New Menu</button>
+    </div>
+<% } %>
 
 <!-- Modal for Adding New Item -->
 <div class="modal" id="addItemModal">

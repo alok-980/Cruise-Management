@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Stationery = require("../../models/stationery/stationeryList.models");
 const wrapAsync = require("../../utils/wrapAsync.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isStationeryOwner } = require("../../middleware.js");
 
 router.get("/", 
     wrapAsync(async (req, res) => {
@@ -41,6 +41,7 @@ router.post("/",
 
 router.delete("/:id", 
     isLoggedIn,
+    isStationeryOwner,
     wrapAsync(async (req, res) => {
         let { id } = req.params;
         let deletedStationeryList = await Stationery.findByIdAndDelete(id);

@@ -5,7 +5,7 @@ const Menu = require("../../models/catering/menu.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const { menuSchema } = require("../../schema.js");
 const ExpressError = require("../../utils/expressError.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isMenuAuthor } = require("../../middleware.js");
 
 const validateMenu = (req, res, next) => {
     const {error} = menuSchema.validate(req.body);
@@ -35,6 +35,7 @@ router.post("/",
         }
     
         const newMenu = new Menu(req.body.menu);
+        newMenu.author = req.user._id
     
         catering.menu.push(newMenu);
     
@@ -48,6 +49,7 @@ router.post("/",
 //route to delete menu items for perticular catering
 router.delete("/:menuId", 
     isLoggedIn,
+    isMenuAuthor,
     wrapAsync(async (req, res) => {
         let { id, menuId } = req.params;
     

@@ -4,7 +4,7 @@ const Stationery = require("../../models/stationery/stationeryList.models");
 const Item = require("../../models/stationery/stationeryItem.models.js");
 const wrapAsync = require("../../utils/wrapAsync.js");
 const ExpressError = require("../../utils/expressError.js");
-const { isLoggedIn } = require("../../middleware.js");
+const { isLoggedIn, isItemAuthor } = require("../../middleware.js");
 
 router.post("/", 
     isLoggedIn,
@@ -20,7 +20,10 @@ router.post("/",
         }
     
         const newItem = new Item(req.body.item);
+        newItem.author = req.user._id;
+        console.log(newItem);
         stationery.item.push(newItem);
+
         await newItem.save();
         await stationery.save();
         req.flash("success", "New Item added successfully!");
@@ -30,6 +33,7 @@ router.post("/",
 
 router.delete("/:itemId", 
     isLoggedIn,
+    isItemAuthor,
     wrapAsync(async (req, res) => {
         let { id, itemId } = req.params;
     
