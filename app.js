@@ -23,8 +23,11 @@ const itemRoute = require("./routes/stationery/item.route.js");
 const resortRoute = require("./routes/resort/resort.route.js")
 const moviesHallRoute = require("./routes/movies/moviesHall.route.js");
 
-const Admin = require("./models/admin/admin.mmodels.js");
-const adminRouter = require("./routes/admin/admin.route.js");
+const User = require("./models/users/user.models.js");
+const userRoute = require("./routes/users/user.route.js");
+
+const bookingRoute = require("./routes/booking/booking.route.js");
+const bookingIndexRoute = require("./routes/booking/bookingIndex.route.js");
 
 const MONGO_URL = `${process.env.MONGO_URI}cruise-management`;
 
@@ -66,9 +69,9 @@ app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
-passport.use(new LocalStrategy(Admin.authenticate()))
-passport.serializeUser(Admin.serializeUser());
-passport.deserializeUser(Admin.deserializeUser());
+passport.use(new LocalStrategy(User.authenticate()))
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 app.use((req, res, next) => {
     res.locals.success = req.flash("success");
@@ -91,8 +94,11 @@ app.use("/resort-movies/resort", resortRoute);
 
 app.use("/resort-movies/movies", moviesHallRoute);
 
-app.use("/admin", adminRouter);
+app.use("/user", userRoute);
 
+app.use("/item/:id/booking", bookingRoute);
+
+app.use("/booking", bookingIndexRoute);
 
 app.all("*", (req, res, next) => {
     next(new ExpressError(404, "Page not found!"));

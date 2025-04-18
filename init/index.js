@@ -16,20 +16,20 @@ async function main() {
 }
 
 const initDB = async () => {
-    // await Catering.deleteMany({});
-    // initData.data = initData.data.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
-    // await Catering.insertMany(initData.data);
+    await Catering.deleteMany({});
+    initData.data = initData.data.map((obj) => ({...obj, owner: "680071332fdc0f395897a9ab"}))
+    await Catering.insertMany(initData.data);
 
-    // await Stationery.deleteMany({});
-    // initData.list = initData.list.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
-    // await Stationery.insertMany(initData.list);
+    await Stationery.deleteMany({});
+    initData.list = initData.list.map((obj) => ({...obj, owner: "680071332fdc0f395897a9ab"}))
+    await Stationery.insertMany(initData.list);
 
-    // await Resort.deleteMany({});
-    // initData.resort = initData.resort.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
-    // await Resort.insertMany(initData.resort);
+    await Resort.deleteMany({});
+    initData.resort = initData.resort.map((obj) => ({...obj, owner: "680071332fdc0f395897a9ab"}))
+    await Resort.insertMany(initData.resort);
 
     await MoviesHall.deleteMany({});
-    initData.moviesHall = initData.moviesHall.map((obj) => ({...obj, owner: "67eb972693642221187bbefa"}))
+    initData.moviesHall = initData.moviesHall.map((obj) => ({...obj, owner: "680071332fdc0f395897a9ab"}))
     await MoviesHall.insertMany(initData.moviesHall);
     console.log("data saved successfully");
 }

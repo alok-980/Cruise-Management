@@ -15,9 +15,8 @@ const menuSchema = new Schema(
         },
 
         image: {
-            type: String,
-            default: "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg",
-            set: (v) => v === "" ? "https://coffective.com/wp-content/uploads/2018/06/default-featured-image.png.jpg" : v
+            url: String,
+            filename: String
         },
 
         price: {
@@ -32,7 +31,7 @@ const menuSchema = new Schema(
 
         author: {
             type: Schema.Types.ObjectId,
-            ref: "Admin"
+            ref: "User"
         }
     }
 )

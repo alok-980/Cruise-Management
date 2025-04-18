@@ -4,7 +4,7 @@
 <h2>Add New Catering</h2>
 
 <!-- Form Section -->
-<form action="/catering" method="POST" class="catering-form needs-validation" novalidate>
+<form action="/catering" method="POST" class="catering-form needs-validation" novalidate enctype="multipart/form-data">
     <!-- Catering Title -->
     <div class="mb-3">
         <label for="cateringTitle" class="form-label">Catering Title</label>
@@ -16,10 +16,10 @@
     
     <!-- Catering Image URL -->
     <div class="mb-3">
-        <label for="cateringImage" class="form-label">Image URL</label>
-        <input type="text" class="form-control" id="cateringImage" name="catering[image]" placeholder="Enter image URL">
+        <label for="cateringImage" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" id="cateringImage" name="catering[image]">
         <div class="invalid-feedback">
-            Please provide a valid image URL.
+            Please provide a image of catering.
         </div>
     </div>
     

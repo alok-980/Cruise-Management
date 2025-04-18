@@ -31,7 +31,7 @@ const moviesSchema = new Schema({
 
     author: {
         type: Schema.Types.ObjectId,
-        ref: "Admin"
+        ref: "User"
     }
 })
 

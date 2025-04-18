@@ -1,38 +1,38 @@
-const Admin = require("../../models/admin/admin.mmodels");
+const User = require("../../models/users/user.models");
 
 module.exports.renderSignupForm = (req, res) => {
-    res.render("admin/signup.ejs");
+    res.render("users/signup.ejs");
 }
 
 module.exports.Signup = async (req, res, next) => {
     try {
         let { username, email, password } = req.body;
-        const admin = new Admin({
+        const user = new User({
             email,
             username
         })
 
-        const registeredAdmin = await Admin.register(admin, password);
-        console.log(registeredAdmin);
-        req.login(registeredAdmin, (err) => {
+        const registeredUser = await User.register(user, password);
+        console.log(registeredUser);
+        req.login(registeredUser, (err) => {
             if (err) {
                 return next(err);
             }
-            req.flash("success", "Admin registered successfullt");
-            res.redirect("/admin/login");
+            req.flash("success", "User registered successfully");
+            res.redirect("/user/login");
         })
     } catch (err) {
         req.flash("failure", err.message);
-        res.redirect("/admin/signup");
+        res.redirect("/user/signup");
     }
 }
 
 module.exports.renderLoginForm = (req, res) => {
-    res.render("admin/login.ejs");
+    res.render("users/login.ejs");
 }
 
 module.exports.Login = async (req, res) => {
-    req.flash("success", "admin logged in successfully");
+    req.flash("success", "user logged in successfully");
     let redirectUrl = res.locals.redirectUrl || "/catering";
     res.redirect(redirectUrl);
 }

@@ -1,0 +1,25 @@
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="container my-4">
+    <h4 class="mb-3">Booked Catering Items</h4>
+    <table class="table table-bordered table-striped">
+      <thead class="table-dark">
+        <tr>
+          <th>User</th>
+          <th>Item</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% for(menu of bookedItems) { %>
+          <tr>
+            <td><%= menu.userId.username %></td>
+            <td><%= menu.bookingId.title %></td>
+            <td><%= menu.quantity %></td>
+          </tr>
+        <% } %>
+      </tbody>
+    </table>
+  </div>
+  
+  

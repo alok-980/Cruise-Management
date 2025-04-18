@@ -12,9 +12,11 @@ module.exports.createMenu = async (req, res) => {
         throw new ExpressError(400, "Send valid data for menu");
     }
 
+    let url = req.file.path;
+    let filename = req.file.filename;
     const newMenu = new Menu(req.body.menu);
     newMenu.author = req.user._id
-
+    newMenu.image = { url, filename };
     catering.menu.push(newMenu);
 
     await newMenu.save();

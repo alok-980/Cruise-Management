@@ -15,12 +15,12 @@
         </ul>
         <div class="navbar-nav gap-3 ms-auto">
           <% if (!currUser) { %>
-            <a href="/admin/signup">Signup</a>
-            <a href="/admin/login">Login</a>
+            <a href="/user/signup">Signup</a>
+            <a href="/user/login">Login</a>
           <% } %>
 
           <% if (currUser) { %>
-          <a href="/admin/logout">Logout</a>
+          <a href="/user/logout">Logout</a>
           <% } %>
         </div>
       </div>

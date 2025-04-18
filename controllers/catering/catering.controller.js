@@ -1,4 +1,5 @@
 const Catering = require("../../models/catering/cateringListing.models");
+const ExpressError = require("../../utils/expressError");
 
 module.exports.index = async (req, res) => {
     const allCaterings = await Catering.find({});
@@ -14,13 +15,17 @@ module.exports.showCateringDetails = async (req, res) => {
     let catering = await Catering.findById(id).populate("menu").populate("owner");
     if (!catering) {
         req.flash("failure", "catering you requested for does not exist!");
-        res.redirect("/catering");
+        return res.redirect("/catering");
     }
     res.render("catering/show.ejs", { catering });
 }
 
 module.exports.createCatering = async (req, res) => {
+    let url = req.file.path;
+    let filename = req.file.filename;
+
     const newCatering = new Catering(req.body.catering);
+    newCatering.image = { url, filename };
     newCatering.owner = req.user._id;
     await newCatering.save();
     req.flash("success", "New catering created!");

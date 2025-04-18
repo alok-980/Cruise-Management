@@ -18,6 +18,12 @@
                 <form method="POST" action="/stationery/<%= stationery._id %>/item/<%= item._id %>?_method=DELETE">
                     <button class="action-button delete-menu-button">Delete</button>
                 </form>
+
+                <form action="/item/<%= item._id %>/booking/stationeryItem" method="POST">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" id="quantity" value="1" min="1" required>
+                    <button type="submit" class="btn btn-primary mt-2">Buy Now</button>
+                </form> 
             </div>
         </div>
     <% } %>

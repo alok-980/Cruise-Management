@@ -6,6 +6,10 @@ const ExpressError = require("../../utils/expressError.js");
 const { isLoggedIn, isMenuAuthor } = require("../../middleware.js");
 const menuController = require("../../controllers/catering/menu.controller.js");
 
+const multer  = require('multer')
+const { storage } = require("../../cloudConfig.js");
+const upload = multer({ storage })
+
 const validateMenu = (req, res, next) => {
     const {error} = menuSchema.validate(req.body);
     
@@ -22,6 +26,7 @@ const validateMenu = (req, res, next) => {
 router.post("/",
     // validateMenu,
     isLoggedIn,
+    upload.single('menu[image]'),
     wrapAsync(menuController.createMenu)
 )
 

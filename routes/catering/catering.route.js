@@ -6,6 +6,10 @@ const ExpressError = require("../../utils/expressError.js");
 const { isLoggedIn, isOwner } = require("../../middleware.js");
 const cateringController = require("../../controllers/catering/catering.controller.js");
 
+const multer  = require('multer')
+const { storage } = require("../../cloudConfig.js");
+const upload = multer({ storage })
+
 const validateCatering = (req, res, next) => {
     const {error} = cateringSchema.validate(req.body);
     
@@ -21,6 +25,7 @@ router.route("/")
     .get(wrapAsync(cateringController.index))
     .post(
         isLoggedIn,
+        upload.single('catering[image]'),
         validateCatering,
         wrapAsync(cateringController.createCatering)    
     );

@@ -33,7 +33,7 @@ const moviesHallSchema = new Schema({
 
     owner: {
         type: Schema.Types.ObjectId,
-        ref: "Admin"
+        ref: "User"
     }
 })
 
