@@ -8,4 +8,4 @@ router.route("/headcook")
 router.route("/supervisor")
     .get(bookingIndexController.renderStationeryBoockedItem);
 
-module.exports = router;
+module.exports = router; 

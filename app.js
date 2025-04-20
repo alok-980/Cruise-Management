@@ -22,6 +22,7 @@ const itemRoute = require("./routes/stationery/item.route.js");
 
 const resortRoute = require("./routes/resort/resort.route.js")
 const moviesHallRoute = require("./routes/movies/moviesHall.route.js");
+const moviesRoute = require("./routes/movies/movies.route.js");
 
 const User = require("./models/users/user.models.js");
 const userRoute = require("./routes/users/user.route.js");
@@ -93,6 +94,7 @@ app.get("/resort-movies", (req, res) => {
 app.use("/resort-movies/resort", resortRoute);
 
 app.use("/resort-movies/movies", moviesHallRoute);
+app.use("/resort-movies/movies/:id/movie", moviesRoute);
 
 app.use("/user", userRoute);
 

@@ -1,82 +1,80 @@
-/* General body and page styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+/* Modern Catering Page Styling */
+
+* {
     margin: 0;
     padding: 0;
-}
-
-/* Heading Styling */
-h1 {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f9fafc;
+    color: #333;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+  }
+  
+  .section-title {
+    font-size: 2.2rem;
     text-align: center;
-    margin-top: 20px;
-    font-size: 36px;
-    color: #5a5a5a;
-}
-
-/* Styling for the container holding all caterings */
-.caterings {
+    margin-bottom: 50px;
+    color: #002c57;
+  }
+  
+  .caterings-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-/* Individual catering item styling */
-.allCatering {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+  
+  .catering-card {
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
+    color: inherit;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.allCatering:hover {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .catering-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
-}
-
-/* Styling for the image container */
-.catering-image {
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.12);
+  }
+  
+  .catering-image img {
     width: 100%;
     height: 200px;
-    overflow: hidden;
-}
-
-.catering-image img {
-    width: 100%;
-    height: 100%;
     object-fit: cover;
-}
-
-/* Title styling */
-.catering-title {
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
+    display: block;
+  }
+  
+  .catering-info {
+    padding: 20px;
     text-align: center;
-    color: #333;
-}
-
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 28px;
+  }
+  
+  .catering-title {
+    font-size: 1.3rem;
+    color: #005b96;
+    margin-top: 10px;
+    font-weight: 600;
+  }
+  
+  /* Responsive Tweak */
+  @media (max-width: 480px) {
+    .section-title {
+      font-size: 1.8rem;
     }
-    .caterings {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    }
-}
-
-@media (max-width: 480px) {
-    h1 {
-        font-size: 24px;
-    }
-    .caterings {
-        grid-template-columns: 1fr;
-    }
+  
     .catering-title {
-        font-size: 16px;
+      font-size: 1.1rem;
     }
-}
+  }
+  

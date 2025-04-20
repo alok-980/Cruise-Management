@@ -1,46 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services</title>
-    <link rel="stylesheet" href="/css/root/root.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CruiseAway | Luxury Cruise Vacations</title>
+    <link rel="stylesheet" href="/css/root/root.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
+
 <body>
-    <div class="container">
-        <h1 class="page-title">Our Services</h1>
-        <div class="services-container">
-            <a href="/catering" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Catering Icon"></div>
-                <h2 class="service-title">Catering</h2>
-                <p class="service-description">Delicious catering services for your events.</p>
-            </a>
-            <a href="/stationery" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Stationery Icon"></div>
-                <h2 class="service-title">Stationery</h2>
-                <p class="service-description">High-quality stationery for all your needs.</p>
-            </a>
-            <a href="/resort-movies" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Movie Icon"></div>
-                <h2 class="service-title">Resort-Movie</h2>
-                <p class="service-description">Enjoy a great movie experience at our resort.</p>
-            </a>
-            <a href="#" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Beauty Salon Icon"></div>
-                <h2 class="service-title">Beauty Salon</h2>
-                <p class="service-description">Relax and rejuvenate with our beauty treatments.</p>
-            </a>
-            <a href="#" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Fitness Icon"></div>
-                <h2 class="service-title">Fitness Center</h2>
-                <p class="service-description">Stay fit with our state-of-the-art fitness center.</p>
-            </a>
-            <a href="#" class="service-card">
-                <div class="service-icon"><img src="https://via.placeholder.com/50" alt="Party Hall Icon"></div>
-                <h2 class="service-title">Party Hall</h2>
-                <p class="service-description">Host your next event in our spacious party hall.</p>
-            </a>
+
+    <header class="site-header">
+        <div class="container nav-container">
+            <h1 class="logo">CruiseAway</h1>
+            <nav class="navigation">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </nav>
         </div>
-    </div>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h2>Explore the World in Luxury</h2>
+            <p>Premium cruise experiences designed for relaxation, adventure, and unforgettable memories.</p>
+            <a href="#services" class="btn-primary">View Services</a>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="container">
+            <h2 class="section-title">Our Services</h2>
+            <div class="services-grid">
+                <a href="/catering" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Catering Icon" />
+                    <h3>Catering</h3>
+                    <p>Delicious catering services for your events.</p>
+                </a>
+
+                <a href="/stationery" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Stationery Icon" />
+                    <h3>Stationery</h3>
+                    <p>High-quality stationery for all your needs.</p>
+                </a>
+
+                <a href="/resort-movies" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Movie Icon" />
+                    <h3>Resort-Movie</h3>
+                    <p>Enjoy a great movie experience at our resort.</p>
+                </a>
+
+                <a href="/beauty-salon" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Beauty Salon Icon" />
+                    <h3>Beauty Salon</h3>
+                    <p>Relax and rejuvenate with our beauty treatments.</p>
+                </a>
+
+                <a href="/fitness-center" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Fitness Icon" />
+                    <h3>Fitness Center</h3>
+                    <p>Stay fit with our state-of-the-art fitness center.</p>
+                </a>
+
+                <a href="/party-hall" class="service-card">
+                    <img src="https://via.placeholder.com/80" alt="Party Hall Icon" />
+                    <h3>Party Hall</h3>
+                    <p>Host your next event in our spacious party hall.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">About Us</h2>
+            <p>CruiseAway has been delivering luxury cruise experiences since 2001. Our award-winning fleet combines
+                modern amenities with timeless elegance to create dream vacations for travelers worldwide.</p>
+        </div>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <form class="contact-form">
+                <input type="text" placeholder="Full Name" required />
+                <input type="email" placeholder="Email Address" required />
+                <textarea placeholder="Your Message" rows="5" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 CruiseAway. All Rights Reserved.</p>
+        </div>
+    </footer>
+
 </body>
+
 </html>

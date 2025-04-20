@@ -12,7 +12,7 @@ module.exports.renderNewForm = (req, res) => {
 
 module.exports.showHallDetails = async (req, res) => {
     let { id } = req.params;
-    const moviesHall = await MoviesHall.findById(id);
+    const moviesHall = await MoviesHall.findById(id).populate("movies");
     res.render("resort-movies/movies-hall/show.ejs", { moviesHall });
 }
 

@@ -1,1 +1,31 @@
-<h1>movies</h1>
+<% layout("/layouts/boilerplate.ejs") %>
+
+<div class="container my-5">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <% for (let movie of moviesHall.movies) { %>
+            <div class="col">
+                <div class="card h-100 shadow-sm">
+                    <img src="<%= movie.image %>" class="card-img-top" alt="Movie Image" style="object-fit: cover; height: 200px;">
+                    <div class="card-body">
+                        <h5 class="card-title"><%= movie.title %></h5>
+                        <p class="card-text"><strong>Description:</strong> <%= movie.description %></p>
+                        <p class="card-text"><strong>Price:</strong> ₹<%= movie.price %></p>
+                        <p class="card-text"><strong>Schedule:</strong> <%= movie.schedule %></p>
+                        <% if(currUser) { %>
+                            <form action="/resort-movies/movies/<%= moviesHall._id %>/movie/<%= movie._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        <% } %>
+    </div>
+
+    <!-- Centered Add Button -->
+    <div class="text-center mt-5">
+        <form action="/resort-movies/movies/<%= moviesHall._id %>/movie/new" method="GET">
+            <button class="btn btn-primary btn-lg">Add New Movie</button>
+        </form>
+    </div>
+</div>

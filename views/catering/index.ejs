@@ -1,21 +1,21 @@
 <% layout("/layouts/boilerplate.ejs") %>
 <link rel="stylesheet" href="/css/catering/index.css">
 
-<h1>All Catering</h1>
+<section class="catering-section">
+  <div class="container">
+    <h2 class="section-title">Our Catering Services</h2>
 
-<div class="caterings">
-    <% for(Catering of allCaterings) { %>
-        <div class="allCatering">
-            <a href="/catering/<%= Catering._id %>">
-                <div class="catering-image">
-                    <img src="<%= Catering.image.url %>" class="image" alt="...">
-                </div>
-                <div>
-                    <h5 class="catering-title">
-                        <%= Catering.title %>
-                    </h5>
-                </div>
-            </a>
-        </div>
-    <% } %>
-</div>
+    <div class="caterings-grid">
+      <% for(Catering of allCaterings) { %>
+        <a href="/catering/<%= Catering._id %>" class="catering-card">
+          <div class="catering-image">
+            <img src="<%= Catering.image.url %>" alt="<%= Catering.title %>" />
+          </div>
+          <div class="catering-info">
+            <h3 class="catering-title"><%= Catering.title %></h3>
+          </div>
+        </a>
+      <% } %>
+    </div>
+  </div>
+</section>

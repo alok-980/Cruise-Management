@@ -12,7 +12,7 @@
                     <div class="card-body">
                         <h5 class="card-title"><%= resort.title %></h5>
                         <p class="card-text"><%= resort.description %></p>
-                        <p class="text-danger"><strong>$<%= resort.price.toFixed(2) %> per night</strong></p>
+                        <p class="text-danger"><strong>$<%= resort.price.toFixed(2) %> / hr</strong></p>
                         <% if(currUser && currUser._id.equals(resort.owner._id)) { %>
                         <div class="d-flex">
                             <a href="/resort-movies/resort/<%= resort._id %>/edit">
